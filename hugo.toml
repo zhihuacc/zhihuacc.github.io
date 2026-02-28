@@ -2,6 +2,7 @@ baseURL = "https://zhihuacc.github.io/"
 languageCode = "en-us"
 title = "Zhua's Blogs"
 theme = "cleanwhite"
+publishDir = "docs"
 
 [params]
   author = "Zhihua"
