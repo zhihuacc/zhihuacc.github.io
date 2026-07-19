@@ -225,9 +225,9 @@ int main() {
     SeqGenerator gen = createSeqGenerator(n);
     for (int i = 0; i < n; i++) {
         int v = gen.next();
-        std::cout << v << ", ";
+        std::cerr << v << ", ";
     }
-    std::cout << std::endl;
+    std::cerr << std::endl;
 }
 ```
 
