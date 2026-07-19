@@ -53,13 +53,13 @@ An object of type `SeqGenerator` represents an active coroutine. This object act
 
 In summary, a valid coroutine is a function that contains at least one suspension point and returns a specific type. The following sections will explain how the suspension points and the coroutine objects are constructed and how they work cooperatively together.
 
-## 1 Awaiter
+## 1 Awaiter type
 We know that a coroutine must have at least one `co_await expr` statement that defines a suspension point. This statement actually trigger multiple calls on an so-called `awaiter` object. `Awaiter` type must implement certain interfaces, similarly as `promise_type`, including `await_ready`, `await_suspend`, `await_resume`.
 
-### bool await_ready()
+### `bool await_ready()`
 This function returns a bool and is called when the coroutine reaches this suspension point. `true` is returned when this coroutine should not be suspended and should continue execution without pause, while `false` if it's needed be suspended right here. Usually we need suspend it here.
 
-### await_suspend(std::coroutine_handle<> handle)
+### `await_suspend(std::coroutine_handle<> handle)`
 If it's determined that the coroutine will be suspended, then this function will be called. The `handle` argument is an access to the associated promise object. It allows to access or modify the coroutine's current state, which will be explained below.
 
 This function is allow to be defined with multiple different return types for different purposes:
@@ -70,7 +70,7 @@ This function is allow to be defined with multiple different return types for di
     - `false`: resumes this coroutine immediately
 * `std::coroutine_handle<>`: if returning a handle of other routines, it means the current coroutine is handing over control to another routine, i.e., another routine is resumed.
 
-### await_resume
+### `await_resume`
 This function is called when the current coroutine is resumed by e.g. its caller from this suspension point. Its return type can be any type, and is exactly the `co_await` statement's return type.
 
 C++ standard provides two common-used awaiter types `std::suspend_always` and `std::suspend_never`. The below is a typical implementation of `suspend_always` which will suspend coroutines always.
