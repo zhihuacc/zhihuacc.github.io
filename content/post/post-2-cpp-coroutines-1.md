@@ -2,11 +2,11 @@
 title:       "Notes on C++ Coroutines - 1"
 subtitle:    ""
 description: ""
-date:        2026-07-17
+date:        2026-07-17T11:50:00+08:00
 author:      ""
 image:       ""
 tags:        ["c++", "coroutines"]
-categories:  ["programming" ]
+categories:  ["Tech" ]
 ---
 
 # Background
